@@ -2152,7 +2152,7 @@
 	SEND_SIGNAL(M, COMSIG_CLEAR_MOOD_EVENT, "legion")
 	..()
 
-/datum/reagent/medicine/soulus/pure
+/datum/reagent/medicine/sou lus/pure
 	name = "Purified Soulus Dust"
 	description = "Ground legion cores."
 	reagent_state = SOLID

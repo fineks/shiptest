@@ -1,0 +1,6 @@
+#ifndef MODPACK_FINEKS_MICROWAVE
+#define MODPACK_FINEKS_MICROWAVE
+
+#include "_microwave.dm"
+
+#endif

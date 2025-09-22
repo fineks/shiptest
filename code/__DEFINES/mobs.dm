@@ -152,6 +152,8 @@
 #define BODYTYPE_TAJARA (1<<9) //Fluffy Ass
 // [CELADON-ADD] - RIOL
 #define BODYTYPE_RIOL (1<<10)
+// [CELADON-ADD] - Microwave
+#define BODYTYPE_MICROWAVE (1<<11) //Microwave
 // [/CELADON-ADD]
 
 // Health/damage defines
