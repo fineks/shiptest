@@ -1,0 +1,9 @@
+#ifndef CELADON_SAND_EATING
+#define CELADON_SAND_EATING
+
+#include "sand_eating.dm"
+
+#include "code/sand_eating.dm"
+#include "code/component/sand_eater.dm"
+
+#endif
