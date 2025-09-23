@@ -10,4 +10,8 @@
 #define SHIPPING_METHOD_LAUNCH "Launch"
 // Drops the item somewhere on the map
 #define SHIPPING_METHOD_DEAD_DROP "Dead drop"
+// [CELADON-ADD] - balck market
+// Закладка
+#define SHIPPING_METHOD_STASH "Stash"
+// [/CELADON-ADD]
 
