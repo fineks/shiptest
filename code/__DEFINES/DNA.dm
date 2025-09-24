@@ -51,6 +51,7 @@
 #define MARTYRDOM /datum/mutation/human/martyrdom
 #define HARS /datum/mutation/human/headless
 #define DORFISM /datum/mutation/human/dorfism
+#define SPACEMUT /datum/mutation/human/space_adaptation // [CELADON-ADD] - GENETICS - power creep
 
 #define UI_CHANGED "ui changed"
 #define UE_CHANGED "ue changed"

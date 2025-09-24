@@ -1,0 +1,8 @@
+#ifndef CELADON_GENETICS
+#define CELADON_GENETICS
+
+#include "genetics.dm"
+
+#include "code/genetics.dm"
+
+#endif
