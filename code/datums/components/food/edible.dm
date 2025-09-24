@@ -1,3 +1,4 @@
+/* [CELADON-EDIT] - FOOD_COMPONENT_FIX - К чертям закоменчиваем это, что-бы мешало доьавить
 /*!
 
 This component makes it possible to make things edible. What this means is that you can take a bite or force someone to take a bite (in the case of items).
@@ -15,6 +16,7 @@ Behavior that's still missing from this component that original food items had t
 	Something for cakes (You can store things inside)
 
 */
+
 /datum/component/edible
 	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS
 	///Amount of reagents taken per bite
@@ -506,3 +508,4 @@ Behavior that's still missing from this component that original food items had t
 		var/satisfaction_text = pick("burps from enjoyment.", "yaps for more!", "woofs twice.", "looks at the area where \the [parent] was.")
 		L.manual_emote(satisfaction_text)
 		qdel(parent)
+*/ // [/CELADON-EDIT]
