@@ -137,10 +137,7 @@
 
 	break_alphability(50,5 SECONDS)
 
-<<<<<<< HEAD
 // Рецпт
 /datum/generecipe/hulk
 	required = "/datum/mutation/human/chameleon; /datum/mutation/human/glow/anti"
 	result = HULK
-=======
->>>>>>> e384a5b62074f8bfc1248719487bf3ed0d1cf180
