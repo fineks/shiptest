@@ -64,9 +64,6 @@
 	instability = 45
 
 // cloak of darkness - Добавить. Было лень смотреть логику его работы на парадизе, по этому написал свою
-#define ALPHA_DELTA_MAX 25
-#define ALPHA_DELTA_MIN -10
-#define ALPHA_BASE_COFFICIENT 2
 
 /datum/mutation/human/chameleon/darkcloaka
 	name = "Cloak of darkness"
@@ -86,8 +83,9 @@
 		return
 	var/turf/T = owner.loc
 	var/light_amount = T.get_lumcount()
+	// Мне всё ещё не нравится как это работает
 	if(!broken)
-		owner.alpha = (owner.alpha*light_amount*5)+5
+		owner.alpha = max(owner.alpha*(light_amount+0.1),(light_amount+0.2)*255)
 	else
 		owner.alpha += 15
 
@@ -147,7 +145,30 @@
 	if(user.stat || !tkMaxRangeCheck(user, src))
 		return
 	new /obj/effect/temp_visual/telekinesis(get_turf(src))
-	if(do_after(user, tk_delay))
-		user.UnarmedAttack(src,0) // attack_hand, attack_paw, etc
+	to_chat(user, span_warning("You concentrate on [src]..."))
+	if(do_after(user, tk_delay,src,1,IGNORE_USER_LOC_CHANGE))
+		user.UnarmedAttack(src,0)
 		add_hiddenprint(user)
 	return
+
+// Сила даёт больше урона
+/datum/mutation/human/strong/on_acquiring()
+	if(owner)
+		owner.dna.species.punchdamagelow += 5
+		owner.dna.species.punchdamagehigh += 5
+	..()
+
+/datum/mutation/human/strong/on_losing()
+	if(owner)
+		owner.dna.species.punchdamagelow -= 5
+		owner.dna.species.punchdamagehigh -= 5
+	..()
+
+
+// Фикс дворфа, ну или же включение столу обратно дружбу с TRAIT_PASSTABLE
+/obj/structure/table/CanAllowThrough(atom/movable/mover, border_dir)
+	. = ..()
+	if(istype(mover, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = mover
+		if(HAS_TRAIT(H,TRAIT_PASSTABLE))
+			return TRUE
