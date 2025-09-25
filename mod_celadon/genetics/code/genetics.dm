@@ -82,14 +82,14 @@
 
 
 /datum/mutation/human/chameleon/darkcloaka/proc/update_alpha()
-	if(broken)
-		return
 	if(!owner)
 		return
 	var/turf/T = owner.loc
-	var/light_amount = T.get_lumcount(maxlum = 2)
-	//TODO: Эта формула говно, надо переписать или вообще сделать всё на if'ах что-бы не париться
-	owner.alpha -= clamp(owner.alpha - (owner.alpha + 1) * light_amount * ALPHA_BASE_COFFICIENT,ALPHA_DELTA_MIN,ALPHA_DELTA_MAX)
+	var/light_amount = T.get_lumcount()
+	if(!broken)
+		owner.alpha = (owner.alpha*light_amount*5)+5
+	else
+		owner.alpha += 15
 
 // Вызывается при поломке инвиза (атака, получение урона)
 /datum/mutation/human/chameleon/darkcloaka/proc/break_alphability(var/strength,var/delay)
@@ -127,7 +127,7 @@
 	if(!proximity) //stops tk from breaking chameleon
 		return
 
-	break_alphability(25, 2 SECONDS)
+	break_alphability(15, 2 SECONDS)
 
 /datum/mutation/human/chameleon/darkcloaka/proc/on_damage()
 	SIGNAL_HANDLER
@@ -138,3 +138,16 @@
 /datum/generecipe/darkcloaka
 	required = "/datum/mutation/human/chameleon; /datum/mutation/human/glow/anti"
 	result = DARKCLOAKA
+
+// Теликинез фикс + do_after машинерии
+/obj/machinery
+	var/tk_delay = 3 SECONDS
+
+/obj/machinery/attack_tk(mob/user)
+	if(user.stat || !tkMaxRangeCheck(user, src))
+		return
+	new /obj/effect/temp_visual/telekinesis(get_turf(src))
+	if(do_after(user, tk_delay))
+		user.UnarmedAttack(src,0) // attack_hand, attack_paw, etc
+		add_hiddenprint(user)
+	return
