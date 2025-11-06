@@ -26,11 +26,14 @@
 	if(locked) //no! I am locked! begone!
 		return
 	var/list/modifiers = params2list(params)
-
+	/*[CELADON-CHANGE] - !!!!!!!!!(а вообще LAZYACCESS дегенератская функция)
 	//No screen-loc information? abort.
 	if(LAZYACCESS(modifiers, SCREEN_LOC))
 		return
-
+	*/
+	if(!LAZYACCESS(modifiers, SCREEN_LOC))
+		return
+	//[/CELADON-CHANGE]
 	//Split screen-loc up into X+Pixel_X and Y+Pixel_Y
 	var/list/screen_loc_params = splittext(LAZYACCESS(modifiers, SCREEN_LOC), ",")
 
