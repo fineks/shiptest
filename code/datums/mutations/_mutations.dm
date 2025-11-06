@@ -173,7 +173,6 @@
 
 	power = new power()
 	power.action_background_icon_state = "bg_tech_blue_on"
-	power.panel = "Genetic"
 	owner.AddSpell(power)
 	return TRUE
 // Runs through all the coefficients and uses this to determine which chromosomes the
